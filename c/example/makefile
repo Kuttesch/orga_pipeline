@@ -3,7 +3,8 @@ CC = gcc
 CFLAGS = -std=c99 -pedantic -Wall -Wextra -Werror -O2 -Iinclude
 COVFLAGS = -fprofile-arcs -ftest-coverage
 LDFLAGS = -lgcov
-GCOVR = $(if $(wildcard .venv/bin/gcovr),.venv/bin/gcovr,gcovr)
+GCOVR = $(if $(wildcard .venv/bin/gcovr),.venv/bin/gcovr,$(if $(wildcard .venv/Scripts/gcovr.exe),.venv/Scripts/gcovr.exe,gcovr))
+CLANG_FORMAT = $(if $(wildcard .venv/bin/clang-format),.venv/bin/clang-format,$(if $(wildcard .venv/Scripts/clang-format.exe),.venv/Scripts/clang-format.exe,clang-format))
 
 # Directories
 SRC_DIR := src
@@ -84,8 +85,19 @@ else
 endif
 
 
+# --- Formatting ---
+format:
+ifneq ("$(wildcard .clang-format)","")
+	@echo "Formatting all source and header files..."
+	@$(CLANG_FORMAT) -i $(call rwildcard,$(SRC_DIR)/,*.c) $(call rwildcard,$(SRC_DIR)/,*.h) $(call rwildcard,$(SRC_DIR)/internal/,*.h) $(call rwildcard,include/,*.h)
+	@echo "Formatting complete."
+else
+	@echo "Error: No .clang-format file found in the project root."
+endif
+
+
 # Clean
 clean:
 	rm -rf $(OUT_DIR) $(HTML_DIR) *.gcno *.gcda *.gcov
 
-.PHONY: all clean test coverage docs
+.PHONY: all clean test coverage docs format

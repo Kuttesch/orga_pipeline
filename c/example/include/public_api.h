@@ -10,7 +10,7 @@
 
 /**
  * @brief This is an example api function.
- * 
+ *
  * @param argument Integer to be processed.
  * @return int Processed Integer.
  */

@@ -5,11 +5,11 @@
  * @version 1.0
  */
 
-#include "public_api.h"
 #include "example.h"
 
+#include "public_api.h"
+
 int public_function(int argument) {
-    
     return argument;
 }
 
