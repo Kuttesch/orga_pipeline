@@ -12,9 +12,10 @@ Copyright © 2026 LA-eRacing
 
 # Explicit navigation (clean + structured)
 nav = [
-  { "Home" = "readme.md" },
+  { "Home" = "index.md" },
 
   { "C Guidelines" = [
+      { "Home" = "c/docs/home.md" },
       { "General" = "c/docs/general.md" },
       { "Naming Conventions" = "c/docs/naming_conventions.md" },
       { "Tooling & Compiler" = "c/docs/tooling_and_compiler.md" },
@@ -26,6 +27,7 @@ nav = [
   ]},
 
   { "Git" = [
+      { "Home" = "git/home.md" },
       { "Basics" = "git/basics.md" },
       { "Setup" = "git/setup.md"},
       { "Branch Model" = "git/branch_model.md" },
@@ -36,6 +38,7 @@ nav = [
   ]},
 
   { "Writing Formal Documentation" = [
+      { "Home" = "writing/home.md" },
       {"Important" = "writing/important.md"},
       {"General Writing Guidelines" = "writing/general_writing_guidelines.md"},
       {"Normative Language" = "writing/normative_language.md"},
